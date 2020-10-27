@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PathFinding : MonoBehaviour
 {
 	public Transform seeker, target;
@@ -23,29 +24,29 @@ public class PathFinding : MonoBehaviour
 		FindPath(seeker.position, target.position);
 
 	}
+	public int maxSize
+    {
+        get
+        {
+			return grid.gridSizeX * grid.gridSizeY;
+        }
+    }
 
 	void FindPath(Vector3 startPos, Vector3 targetPos)
 	{
 		Node startNode = grid.NodeFromWorldPoint(startPos);
 		Node targetNode = grid.NodeFromWorldPoint(targetPos);
 
-		List<Node> openSet = new List<Node>();
+		HEAP<Node> openSet = new HEAP<Node>(maxSize);
 		HashSet<Node> closedSet = new HashSet<Node>();
-		openSet.Add(startNode);
+		openSet.add(startNode);
 
+		//parent : (n-1)/2
+		// child left : 2n+1
+		//child right : 2n+2
 		while (openSet.Count > 0)
 		{
-			Node node = openSet[0];
-			for (int i = 1; i < openSet.Count; i++)
-			{
-				if (openSet[i].fCost < node.fCost || openSet[i].fCost == node.fCost)
-				{
-					if (openSet[i].hCost < node.hCost)
-						node = openSet[i];
-				}
-			}
-
-			openSet.Remove(node);
+			Node node = openSet.removeFirst();
 			closedSet.Add(node);
 
 			if (node == targetNode)
@@ -62,14 +63,14 @@ public class PathFinding : MonoBehaviour
 				}
 
 				int newCostToNeighbour = node.gCost + GetDistance(node, neighbour);
-				if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+				if (newCostToNeighbour < neighbour.gCost || !openSet.contains(neighbour))
 				{
 					neighbour.gCost = newCostToNeighbour;
 					neighbour.hCost = GetDistance(neighbour, targetNode);
 					neighbour.parent = node;
 
-					if (!openSet.Contains(neighbour))
-						openSet.Add(neighbour);
+					if (!openSet.contains(neighbour))
+						openSet.add(neighbour);
 				}
 			}
 		}

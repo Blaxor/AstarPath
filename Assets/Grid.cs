@@ -11,10 +11,11 @@ public class Grid : MonoBehaviour
 	public LayerMask unwalkableMask;
 	public Vector2 gridWorldSize;
 	public float nodeRadius;
+	public bool showOnlyPath;
 	Node[,] grid;
 
-	float nodeDiameter;
-	int gridSizeX, gridSizeY;
+	public float nodeDiameter;
+	public int gridSizeX, gridSizeY;
 
 	void Awake()
 	{
@@ -85,12 +86,16 @@ public class Grid : MonoBehaviour
 
 		if (grid != null)
 		{
+
 			foreach (Node n in grid)
 			{
-				Gizmos.color = (n.walkable) ? Color.white : Color.red;
-				if (path != null)
-					if (path.Contains(n))
-						Gizmos.color = Color.black;
+				Gizmos.color = n.walkable ? Color.white : Color.red;
+				if (path.Contains(n))
+				{
+					Gizmos.color = Color.black;
+
+
+				}
 				Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
 			}
 		}

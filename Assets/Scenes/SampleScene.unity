@@ -253,6 +253,10 @@ MonoBehaviour:
     m_Bits: 256
   gridWorldSize: {x: 50, y: 50}
   nodeRadius: 1
+  showOnlyPath: 1
+  nodeDiameter: 0
+  gridSizeX: 0
+  gridSizeY: 0
 --- !u!4 &368333256
 Transform:
   m_ObjectHideFlags: 0

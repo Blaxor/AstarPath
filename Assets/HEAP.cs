@@ -12,6 +12,7 @@ public class HEAP<T> where T: IHeapItem<T>
 
     public HEAP(int maxHeapSize)
     {
+        
         items = new T[maxHeapSize];
     }
 

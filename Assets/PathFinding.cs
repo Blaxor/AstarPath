@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -95,7 +96,7 @@ public class PathFinding : MonoBehaviour
 			currentNode = currentNode.parent;
 		}
 		Vector3[] waypoints = simplifyPath(path);
-		waypoints.Reverse();
+		Array.Reverse(waypoints);
 		return waypoints;
 
 	}
@@ -113,10 +114,8 @@ public class PathFinding : MonoBehaviour
 			directionOld = directionNew;
 
 		}
-
-
 		return waypoints.ToArray();
-	}//https://youtu.be/dn1XRIaROM4?t=1226
+	}//
 
 	int GetDistance(Node nodeA, Node nodeB)
 	{

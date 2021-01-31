@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class PathFinding : MonoBehaviour
 {
 	PathHandler pathHandler;
- Grid grid;
+    Grid grid;
 
 	void Awake()
 	{
@@ -126,4 +125,5 @@ public class PathFinding : MonoBehaviour
 			return 14 * dstY + 10 * (dstX - dstY);
 		return 14 * dstX + 10 * (dstY - dstX);
 	}
+
 }

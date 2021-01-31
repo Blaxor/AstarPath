@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PathUnit : MonoBehaviour
@@ -45,6 +44,14 @@ public class PathUnit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+    private void OnDrawGizmos()
+    {
+ /*       foreach(Vector3 vector in path)
+        {
+            Gizmos.DrawCube(vector,Vector3.one);
+        }*/
         
     }
 }
